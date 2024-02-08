@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+    - name: ECOM_SRC
+      description: This is a replica of the Postgres database used by our app
+      database: RAW_LOOKER_DB
+      schema: ECOM
+      tables:
+          - name: ORDER_ITEMS
+            description: Order Items Table.
+          - name: INVENTORY_ITEMS
+            description: Inventory Items Table
+          - name: ORDERS
+            description: Orders Table

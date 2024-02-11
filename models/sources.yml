@@ -12,3 +12,5 @@ sources:
             description: Inventory Items Table
           - name: ORDERS
             description: Orders Table
+          - name: CUSTOMERS
+            description: Customers Table

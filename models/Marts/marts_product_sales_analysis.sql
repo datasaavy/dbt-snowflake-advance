@@ -1,19 +1,17 @@
- with order_items as (
-    SELECT * FROM {{ ref('int_order_items') }}
- ),
+with
+    order_items as (select * from {{ ref("int_order_items") }}),
 
- inventory_items as (
-    SELECT * FROM {{ ref('int_inventory_items') }}
- ),
- 
- product_sales as (
-    SELECT 
-    * 
-    FROM
-        order_items
-        JOIN
-        inventory_items
-        USING(PRODUCT_ID)
- )
+    inventory_items as (select * from {{ ref("int_inventory_items") }}),
 
- SELECT * FROM product_sales
+    customers_table as (select * from {{ ref("stg_customer") }}),
+
+    product_sales as (
+        select * from order_items join inventory_items using (product_id)
+    ),
+
+    marts_product_sales_analysis as (
+        select * from customers_table left join product_sales using (user_id)
+    )
+
+select *
+from marts_product_sales_analysis
